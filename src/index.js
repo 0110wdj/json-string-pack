@@ -51,12 +51,7 @@ function from_pack_value(v) {
   }
 }
 
-/**
- * Unpacks a patch from a base64 encoded gzip string.
- * @param {string} data - The base64 encoded gzip data.
- * @returns {Promise<any>} The unpacked patch value.
- */
-export async function unpack_patch(data) {
+async function unpack(data) {
   // 创建一个 data URL 并获取原始数据
   const res = await fetch(`data:application/octet-stream;base64,${data}`)
   const buf = await res.arrayBuffer() // 获取 ArrayBuffer 格式的原始数据
@@ -186,7 +181,7 @@ function to_pack_value(
  * @param {*} pack_string_keys 指定压缩存储的字符串的key，如果对象中有字符串属性：{ aaa: "str" }，并且此处设置了{ "aaa": true }，则"str"会在全局表中去重存储。
  * @returns 压缩后的数据，以base64字符串的形式表示
  */
-export async function pack(
+async function pack(
   /** @type {unknown} */ v,
   /** @type {{[key:string]:boolean}} */ pack_string_keys = {},
 ) {
@@ -214,3 +209,7 @@ export async function pack(
   const b64 = await blobToBase64(blob)
   return b64
 }
+
+
+export { pack, unpack }
+export default { pack, unpack }
