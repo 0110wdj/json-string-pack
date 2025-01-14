@@ -1,8 +1,8 @@
 {
-  "name": "json-string-pack",
-  "version": "0.0.1",
+  "name": "@snofly/json-string-pack",
+  "version": "1.0.0",
   "description": "Compress JSON strings with a large number of repeating characters.",
-  "main": "./src/index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -2,7 +2,7 @@
 
 ### import
 ```js
-import { pack, unpack } from 'json-string-pack';
+import { pack, unpack } from '@snofly/json-string-pack';
 ```
 
 ### pack
