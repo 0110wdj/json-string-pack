@@ -1,5 +1,5 @@
 {
-  "name": "@snofly/json-string-pack",
+  "name": "json-string-pack",
   "version": "1.0.1",
   "description": "Compress JSON strings with a large number of repeating characters.",
   "main": "./index.js",
