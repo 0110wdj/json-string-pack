@@ -1,6 +1,6 @@
 {
   "name": "json-string-pack",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Compress JSON strings with a large number of repeating characters.",
   "main": "./index.js",
   "scripts": {
