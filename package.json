@@ -2,14 +2,14 @@
   "name": "json-string-pack",
   "version": "1.0.6",
   "description": "Compress JSON strings with a large number of repeating characters.",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
     }
   },
   "files": [
@@ -17,7 +17,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest",
     "lint": "eslint src --ext .ts,.js",
     "format": "prettier --write .",
@@ -60,6 +60,5 @@
   },
   "engines": {
     "node": ">=14"
-  },
-  "type": "module"
+  }
 }

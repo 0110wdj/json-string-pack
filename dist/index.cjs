@@ -1,5 +1,13 @@
-import { decode, encode } from '@msgpack/msgpack';
-import pako from 'pako';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var msgpack = require('@msgpack/msgpack');
+var pako = require('pako');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+var pako__default = /*#__PURE__*/_interopDefault(pako);
 
 // src/index.ts
 function fromPackValue(v) {
@@ -54,7 +62,7 @@ async function unpack(data) {
   const buf = await res.arrayBuffer();
   let decompressed;
   try {
-    decompressed = pako.inflate(new Uint8Array(buf));
+    decompressed = pako__default.default.inflate(new Uint8Array(buf));
   } catch (error) {
     console.error("Decompression failed:", error);
     throw error;
@@ -62,7 +70,7 @@ async function unpack(data) {
   try {
     const blob = new Blob([decompressed]);
     const buffer = await blob.arrayBuffer();
-    const r = decode(buffer);
+    const r = msgpack.decode(buffer);
     return fromPackValue(r);
   } catch (error) {
     console.error("Decoding failed:", error);
@@ -108,8 +116,8 @@ function toPackValue(v) {
 }
 async function pack(v) {
   const packed = toPackValue(v);
-  const mp = encode(packed);
-  const compressed = pako.gzip(mp);
+  const mp = msgpack.encode(packed);
+  const compressed = pako__default.default.gzip(mp);
   const blob = new Blob([compressed]);
   if (typeof window !== "undefined") {
     return new Promise((resolve, reject) => {
@@ -131,6 +139,8 @@ async function pack(v) {
 }
 var index_default = { pack, unpack };
 
-export { index_default as default, pack, unpack };
-//# sourceMappingURL=index.mjs.map
-//# sourceMappingURL=index.mjs.map
+exports.default = index_default;
+exports.pack = pack;
+exports.unpack = unpack;
+//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=index.cjs.map
