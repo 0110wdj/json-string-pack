@@ -99,14 +99,7 @@ function toPackValueWithMeta(
       if (Array.isArray(value)) {
         return [
           0,
-          ...value.map(v =>
-            toPackValueWithMeta(
-              meta,
-              metamap,
-              undefined,
-              v,
-            ),
-          ),
+          ...value.map(v => toPackValueWithMeta(meta, metamap, undefined, v)),
         ];
       }
       const keys = Object.keys(value);
@@ -120,14 +113,7 @@ function toPackValueWithMeta(
       }
       return [
         metaindex,
-        ...keys.map(key =>
-          toPackValueWithMeta(
-            meta,
-            metamap,
-            key,
-            value[key],
-          ),
-        ),
+        ...keys.map(key => toPackValueWithMeta(meta, metamap, key, value[key])),
       ];
     }
     default:
@@ -135,16 +121,9 @@ function toPackValueWithMeta(
   }
 }
 
-function toPackValue(
-  v: unknown,
-): [Meta, unknown] {
+function toPackValue(v: unknown): [Meta, unknown] {
   const meta: Meta = [[]];
-  const value = toPackValueWithMeta(
-    meta,
-    {},
-    undefined,
-    v,
-  );
+  const value = toPackValueWithMeta(meta, {}, undefined, v);
   return [meta, value];
 }
 
@@ -153,9 +132,7 @@ function toPackValue(
  * @param v - 要序列化的对象
  * @returns 压缩后的数据，以base64字符串的形式表示
  */
-async function pack(
-  v: unknown,
-): Promise<string> {
+async function pack(v: unknown): Promise<string> {
   const packed = toPackValue(v);
   const mp = encode(packed);
 
@@ -182,4 +159,4 @@ async function pack(
 }
 
 export { pack, unpack };
-export default { pack, unpack }; 
+export default { pack, unpack };

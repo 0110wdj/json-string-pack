@@ -3,14 +3,7 @@ import { pack, unpack } from '../index';
 describe('json-string-pack', () => {
   describe('pack and unpack', () => {
     it('should correctly handle basic types', async () => {
-      const testCases = [
-        42,
-        'hello',
-        true,
-        null,
-        [1, 2, 3],
-        { a: 1, b: 2 },
-      ];
+      const testCases = [42, 'hello', true, null, [1, 2, 3], { a: 1, b: 2 }];
 
       for (const testCase of testCases) {
         const packed = await pack(testCase);
@@ -53,7 +46,7 @@ describe('json-string-pack', () => {
       });
 
       expect(packedWithOpt.length).toBeLessThan(packedWithoutOpt.length);
-      
+
       const unpackedWithOpt = await unpack(packedWithOpt);
       expect(unpackedWithOpt).toEqual(data);
     });
@@ -63,4 +56,4 @@ describe('json-string-pack', () => {
       await expect(unpack(invalidBase64)).rejects.toThrow();
     });
   });
-}); 
+});
