@@ -12,7 +12,7 @@ export default defineConfig({
   target: 'es2020',
   outExtension({ format }) {
     return {
-      js: format === 'cjs' ? '.cjs' : '.mjs'
+      js: format === 'cjs' ? '.cjs' : '.mjs',
     };
   },
   platform: 'neutral',
@@ -21,8 +21,8 @@ export default defineConfig({
   esbuildOptions(options) {
     if (options.format === 'cjs') {
       options.footer = {
-        js: 'if (module.exports.default) { Object.assign(module.exports, module.exports.default); }'
+        js: 'if (module.exports.default) { Object.assign(module.exports, module.exports.default); }',
       };
     }
-  }
+  },
 });

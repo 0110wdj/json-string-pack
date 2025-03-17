@@ -7,8 +7,8 @@ declare function unpack(data: string): Promise<unknown>;
 declare function pack(v: unknown): Promise<string>;
 
 declare const _default: {
-    pack: typeof pack;
-    unpack: typeof unpack;
+  pack: typeof pack;
+  unpack: typeof unpack;
 };
 
 export { _default as default, pack, unpack };
