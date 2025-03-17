@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -11,7 +11,7 @@ export default defineConfig({
   platform: 'browser',
   esbuildOptions(options) {
     options.supported = {
-      'dynamic-import': true
+      'dynamic-import': true,
     };
-  }
-}) 
+  },
+});
