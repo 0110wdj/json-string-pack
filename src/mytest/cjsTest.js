@@ -16,4 +16,4 @@ const data = {
   // 解压数据
   const decompressed = await unpack(compressed);
   console.log(decompressed); // 输出原始对象
-})(); 
+})();

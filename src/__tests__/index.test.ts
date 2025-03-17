@@ -36,14 +36,14 @@ describe('json-string-pack', () => {
             age: 30,
             address: {
               city: '北京',
-              street: '长安街'
-            }
+              street: '长安街',
+            },
           },
           settings: {
             theme: 'dark',
-            notifications: true
-          }
-        }
+            notifications: true,
+          },
+        },
       };
 
       const packed = await pack(data);
@@ -56,12 +56,12 @@ describe('json-string-pack', () => {
         items: [
           { id: 1, value: [1, 2, 3] },
           { id: 2, value: ['a', 'b', 'c'] },
-          { id: 3, value: [true, false, null] }
+          { id: 3, value: [true, false, null] },
         ],
         meta: {
           total: 3,
-          tags: ['测试', '数组']
-        }
+          tags: ['测试', '数组'],
+        },
       };
 
       const packed = await pack(data);
@@ -77,8 +77,9 @@ describe('json-string-pack', () => {
         users: Array(100).fill({
           role: '管理员',
           status: '活跃',
-          description: '这是一段很长的描述文本，用于测试字符串压缩效果。这段文本会重复很多次。'
-        })
+          description:
+            '这是一段很长的描述文本，用于测试字符串压缩效果。这段文本会重复很多次。',
+        }),
       };
 
       const originalSize = JSON.stringify(data).length;
@@ -98,13 +99,15 @@ describe('json-string-pack', () => {
 
     it('应该有效压缩大型数据集', async () => {
       const data = {
-        records: Array(1000).fill(null).map((_, index) => ({
-          id: index,
-          timestamp: new Date().toISOString(),
-          category: index % 2 === 0 ? '类型A' : '类型B',
-          status: index % 3 === 0 ? '待处理' : '已完成',
-          description: '这是记录的详细描述信息，包含一些重复的文本内容。'
-        }))
+        records: Array(1000)
+          .fill(null)
+          .map((_, index) => ({
+            id: index,
+            timestamp: new Date().toISOString(),
+            category: index % 2 === 0 ? '类型A' : '类型B',
+            status: index % 3 === 0 ? '待处理' : '已完成',
+            description: '这是记录的详细描述信息，包含一些重复的文本内容。',
+          })),
       };
 
       const originalSize = JSON.stringify(data).length;
@@ -155,7 +158,7 @@ describe('json-string-pack', () => {
         special: '!@#$%^&*()',
         chinese: '你好，世界！',
         emoji: '👋🌍🎉',
-        mixed: '中文English123!@#$'
+        mixed: '中文English123!@#$',
       };
 
       const packed = await pack(data);
@@ -163,4 +166,4 @@ describe('json-string-pack', () => {
       expect(unpacked).toEqual(data);
     });
   });
-}); 
+});
